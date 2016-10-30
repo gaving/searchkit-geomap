@@ -2,7 +2,7 @@
 
 Map component for Searchkit
 
-![searchkit-geomap](https://github.com/gaving/searchkit-geomap/raw/master/site/1.png)
+![searchkit-geomap](https://github.com/gaving/searchkit-geomap/raw/master/site/1.gif)
 
 ## Installation
 
