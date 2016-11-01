@@ -19,6 +19,7 @@ const opts = {
   latitude: 53.4129,
   longitude: -8.2439,
   zoom: 4,
+  mapStyle: 'mapbox://styles/mapbox/streets-v9',
   mapboxApiAccessToken:
     'pk.eyJ1IjoiZ2F2aW5nIiwiYSI6ImNpdXVhbWdvbjAwMHAyb3IzcTN0Ym1xM3AifQ.77yE6Aps7Pro8MOr-w-V3A'
 };
