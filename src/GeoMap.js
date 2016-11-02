@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import * as _ from 'lodash';
 import MapGL, {fitBounds, ScatterplotOverlay} from 'react-map-gl';
 import ViewportMercator from 'viewport-mercator-project';
-import { GeoAccessor } from './';
+import { GeoAccessor } from './GeoAccessor';
 
 import {
   Accessor,

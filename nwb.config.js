@@ -6,6 +6,7 @@ module.exports = {
     externals: {
       'react': 'React'
     },
+    global: 'GeoMap',
     jsNext: true,
     umd: true
   },
