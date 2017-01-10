@@ -1,8 +1,8 @@
 # searchkit-geomap
 
-[![npm](https://nodei.co/npm/yarn.png)](https://nodei.co/npm/yarn/)
+[![npm](https://nodei.co/npm/searchkit-geomap.png)](https://nodei.co/npm/searchkit-geomap/)
 
-[![build status](https://secure.travis-ci.org/gaving/yarn.png)](http://travis-ci.org/gaving/yarn)
+[![build status](https://secure.travis-ci.org/gaving/searchkit-geomap.png)](http://travis-ci.org/gaving/searchkit-geomap)
 
 Map component for Searchkit
 
