@@ -1,5 +1,9 @@
 # searchkit-geomap
 
+[![npm](https://nodei.co/npm/yarn.png)](https://nodei.co/npm/yarn/)
+
+[![build status](https://secure.travis-ci.org/gaving/yarn.png)](http://travis-ci.org/gaving/yarn)
+
 Map component for Searchkit
 
 ![searchkit-geomap](https://github.com/gaving/searchkit-geomap/raw/master/site/1.gif)
