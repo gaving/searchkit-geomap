@@ -38,6 +38,7 @@
     "search"
   ],
   "dependencies": {
+    "immutable": "^3.8.1",
     "lodash": "^4.16.6",
     "query-string": "^4.2.3",
     "react": "^0.14.7",
