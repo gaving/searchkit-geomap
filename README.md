@@ -75,6 +75,12 @@ config if you experience errors building:-
       }
     }
 
+## Development
+
+- `git clone https://github.com/gaving/searchkit-geomap.git`
+- `yarn install`
+- `yarn start`
+
 ## License
 
 MIT
