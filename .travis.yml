@@ -3,5 +3,5 @@ node_js:
   - "node"
   - "7"
 before_install: 
-  - npm install -g yarn
+  - npm install -g yarn@0.19.0
 install: yarn install --ignore-optional
