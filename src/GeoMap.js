@@ -1,9 +1,11 @@
-import React from 'react';
-import Immutable from 'immutable';
-import * as _ from 'lodash';
-import MapGL, {fitBounds, ScatterplotOverlay} from 'react-map-gl';
-import ViewportMercator from 'viewport-mercator-project';
-import { GeoAccessor } from './GeoAccessor';
+import React from "react";
+import Immutable from "immutable";
+import * as _ from "lodash";
+import ReactMapGL from "react-map-gl";
+import ScatterplotOverlay from "./ScatterPlotOverlay";
+
+import ViewportMercator from "viewport-mercator-project";
+import { GeoAccessor } from "./GeoAccessor";
 
 import {
   Accessor,
@@ -15,19 +17,21 @@ import {
   GeoBoundsMetric,
   SignificantTermsBucket,
   FilteredQuery
-} from 'searchkit';
+} from "searchkit";
 
 export class GeoMap extends SearchkitComponent {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      viewport: Object.assign({
-        zoom: 7,
-        startDragLngLat: null,
-        isDragging: false
-      }, props)
+      viewport: Object.assign(
+        {
+          zoom: 7,
+          startDragLngLat: null,
+          isDragging: false
+        },
+        props
+      )
     };
   }
 
@@ -37,24 +41,23 @@ export class GeoMap extends SearchkitComponent {
 
   centerFromBound(bound) {
     return {
-      lat:(bound.top_left.lat + bound.bottom_right.lat)/2,
-      lng:(bound.top_left.lon + bound.bottom_right.lon)/2
-    }
+      lat: (bound.top_left.lat + bound.bottom_right.lat) / 2,
+      lng: (bound.top_left.lon + bound.bottom_right.lon) / 2
+    };
   }
 
   getPoints() {
-    let areas = this.accessor.getAggregations(['geo', 'areas', 'buckets'], []);
-    let points =  _.map(areas, (area) => {
+    let areas = this.accessor.getAggregations(["geo", "areas", "buckets"], []);
+    let points = _.map(areas, area => {
       return this.centerFromBound(area.cell.bounds);
     });
     return points;
   }
 
-  _onChangeViewport(opt) {
+  _onViewportChange(opt) {
     const { viewport } = this.state;
 
     if (!opt.isDragging) {
-
       // stopped dragging, refresh the data
       const mercator = new ViewportMercator(viewport);
 
@@ -63,11 +66,11 @@ export class GeoMap extends SearchkitComponent {
         mercator.unproject([viewport.width, viewport.height])
       ];
 
-      const [ nw, se ] = bounds;
+      const [nw, se] = bounds;
 
       const area = {
-        top_left:{ lat:nw[1], lon:nw[0] },
-        bottom_right:{ lat:se[1], lon:se[0] }
+        top_left: { lat: nw[1], lon: nw[0] },
+        bottom_right: { lat: se[1], lon: se[0] }
       };
 
       this.accessor.setArea(area);
@@ -88,19 +91,23 @@ export class GeoMap extends SearchkitComponent {
   render() {
     const { viewport } = this.state;
 
-    const locations = Immutable.fromJS(this.getPoints().map(
-      (item) => [item.lng, item.lat]
-    ));
+    const locations = Immutable.fromJS(
+      this.getPoints().map(item => [item.lng, item.lat])
+    );
 
     return (
-      <MapGL { ...viewport } onChangeViewport={this._onChangeViewport.bind(this)}>
+      <ReactMapGL
+        {...viewport}
+        onViewportChange={this._onViewportChange.bind(this)}
+      >
         <ScatterplotOverlay
-            { ...viewport }
-            locations={ locations }
-            dotRadius={ 2 }
-            globalOpacity={ 1 }
-            compositeOperation='screen'/>
-      </MapGL>
-    )
+          {...viewport}
+          locations={locations}
+          dotRadius={2}
+          globalOpacity={1}
+          compositeOperation="screen"
+        />
+      </ReactMapGL>
+    );
   }
 }

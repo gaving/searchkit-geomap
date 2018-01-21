@@ -1,0 +1,33 @@
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match_all": {}
+      },
+      "filter": {
+        "geo_bounding_box": {
+          "location": {
+            "top_left": { "lat": 60.56815526587194, "lon": -25.82202499999999 },
+            "bottom_right": {
+              "lat": 44.81313043523214,
+              "lon": 9.334224999999993
+            }
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "geo": {
+      "filter": { "match_all": {} },
+      "aggs": {
+        "areas": {
+          "geohash_grid": { "field": "location" },
+          "aggs": { "cell": { "geo_bounds": { "field": "location" } } }
+        },
+        "bounds": { "geo_bounds": { "field": "location" } }
+      }
+    }
+  },
+  "size": 20
+}
