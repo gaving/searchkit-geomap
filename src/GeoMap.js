@@ -1,7 +1,7 @@
 import React from "react";
 import Immutable from "immutable";
 import * as _ from "lodash";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, {NavigationControl} from "react-map-gl";
 import ScatterplotOverlay from "./ScatterPlotOverlay";
 
 import ViewportMercator from "viewport-mercator-project";
@@ -24,6 +24,7 @@ export class GeoMap extends SearchkitComponent {
     super(props);
 
     this.state = {
+      displayNavigation: props.displayNavigation,
       viewport: Object.assign(
         {
           zoom: 7,
@@ -48,14 +49,13 @@ export class GeoMap extends SearchkitComponent {
 
   getPoints() {
     let areas = this.accessor.getAggregations(["geo", "areas", "buckets"], []);
-    let points = _.map(areas, area => {
+    return _.map(areas, area => {
       return this.centerFromBound(area.cell.bounds);
     });
-    return points;
   }
 
   _onViewportChange(opt) {
-    const { viewport } = this.state;
+    const { viewport, displayNavigation } = this.state;
 
     if (!opt.isDragging) {
       // stopped dragging, refresh the data
@@ -78,6 +78,7 @@ export class GeoMap extends SearchkitComponent {
     }
 
     this.setState({
+      displayNavigation,
       viewport: Object.assign(viewport, {
         latitude: opt.latitude,
         longitude: opt.longitude,
@@ -89,11 +90,15 @@ export class GeoMap extends SearchkitComponent {
   }
 
   render() {
-    const { viewport } = this.state;
+    const { viewport, displayNavigation } = this.state;
 
     const locations = Immutable.fromJS(
       this.getPoints().map(item => [item.lng, item.lat])
     );
+
+    const control = displayNavigation ? (<div className="geomap-navigation" style={{position: 'absolute', right: '5px', top: '5px'}}>
+      <NavigationControl onViewportChange={this._onViewportChange.bind(this)} />
+    </div>): null;
 
     return (
       <ReactMapGL
@@ -107,7 +112,12 @@ export class GeoMap extends SearchkitComponent {
           globalOpacity={1}
           compositeOperation="screen"
         />
+        {control}
       </ReactMapGL>
     );
   }
 }
+
+GeoMap.defaultProps = {
+  displayNavigation: true
+};
