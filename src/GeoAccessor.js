@@ -23,26 +23,16 @@ export class GeoAccessor extends Accessor {
   }
 
   buildSharedQuery(query) {
-    //   BoolMust([
-    //     {
-    //       filter: {
-    //         geo_bounding_box: {
-    //           location: this.area
-    //         }
-    //       }
-    //     }
-    //   ])
-
     if (this.area) {
-      return query.addQuery(
-        new FilteredQuery({
+      return query.addQuery({
+        bool: {
           filter: {
             geo_bounding_box: {
               location: this.area
             }
           }
-        })
-      );
+        }
+      });
     }
     return query;
   }
