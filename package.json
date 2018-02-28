@@ -1,14 +1,10 @@
 {
   "name": "searchkit-geomap",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Searchkit map component",
   "main": "lib/index.js",
   "jsnext:main": "es6/index.js",
-  "files": [
-    "es6",
-    "lib",
-    "umd"
-  ],
+  "files": ["es6", "lib", "umd"],
   "scripts": {
     "build": "nwb build",
     "clean": "nwb clean",
