@@ -39,16 +39,16 @@
   ],
   "dependencies": {
     "immutable": "^3.8.2",
-    "lodash": "^4.17.4",
-    "query-string": "^5.0.1",
+    "lodash": "^4.17.5",
+    "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-map-gl": "^3.1.4",
+    "react-map-gl": "^3.2.4",
     "searchkit": "^2.3.0",
-    "viewport-mercator-project": "^4.1.1"
+    "viewport-mercator-project": "^5.0.0"
   },
   "devDependencies": {
-    "nwb": "^0.20.0",
+    "nwb": "^0.21.5",
     "nwb-sass": "^0.8.2"
   }
 }
