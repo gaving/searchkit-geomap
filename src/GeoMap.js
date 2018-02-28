@@ -1,7 +1,7 @@
 import React from "react";
 import Immutable from "immutable";
 import * as _ from "lodash";
-import ReactMapGL, {NavigationControl} from "react-map-gl";
+import ReactMapGL, { NavigationControl } from "react-map-gl";
 import ScatterplotOverlay from "./ScatterPlotOverlay";
 
 import ViewportMercator from "viewport-mercator-project";
@@ -96,9 +96,16 @@ export class GeoMap extends SearchkitComponent {
       this.getPoints().map(item => [item.lng, item.lat])
     );
 
-    const control = displayNavigation ? (<div className="geomap-navigation" style={{position: 'absolute', right: '5px', top: '5px'}}>
-      <NavigationControl onViewportChange={this._onViewportChange.bind(this)} />
-    </div>): null;
+    const control = displayNavigation ? (
+      <div
+        className="geomap-navigation"
+        style={{ position: "absolute", right: "5px", top: "5px" }}
+      >
+        <NavigationControl
+          onViewportChange={this._onViewportChange.bind(this)}
+        />
+      </div>
+    ) : null;
 
     return (
       <ReactMapGL
