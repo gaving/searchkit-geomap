@@ -1,14 +1,10 @@
 {
   "name": "searchkit-geomap",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Searchkit map component",
   "main": "lib/index.js",
   "jsnext:main": "es6/index.js",
-  "files": [
-    "es6",
-    "lib",
-    "umd"
-  ],
+  "files": ["es6", "lib", "umd"],
   "scripts": {
     "build": "nwb build",
     "clean": "nwb clean",
@@ -38,17 +34,17 @@
     "search"
   ],
   "dependencies": {
-    "immutable": "^3.8.1",
-    "lodash": "^4.16.6",
-    "query-string": "^4.2.3",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-map-gl": "^1.7.2",
-    "searchkit": "^0.10.0",
-    "viewport-mercator-project": "^2.1.0"
+    "immutable": "^3.8.2",
+    "lodash": "^4.17.5",
+    "query-string": "^5.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-map-gl": "^3.2.4",
+    "searchkit": "^2.3.0",
+    "viewport-mercator-project": "^5.0.0"
   },
   "devDependencies": {
-    "nwb": "^0.13.8",
-    "nwb-sass": "^0.6.0"
+    "nwb": "^0.21.5",
+    "nwb-sass": "^0.8.2"
   }
 }
